@@ -1,0 +1,5 @@
+spring.application.name: social-run-app
+
+management:
+  endpoints.web.exposure.include: health,info
+  endpoints.jmx.exposure.exclude: "*"
