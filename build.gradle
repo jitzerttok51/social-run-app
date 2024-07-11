@@ -5,7 +5,26 @@ plugins {
 }
 
 group = 'org.jitzerttok51'
-version = '0.0.1-SNAPSHOT'
+version = {
+	String major = project.property 'build.version.major'
+	String minor = project.property 'build.version.minor'
+	String build = project.property 'build.number'
+
+	"$major.$minor.$build"
+}()
+
+bootJar {
+	manifest.attributes (
+			'Implementation-Version': "$version"
+	)
+}
+
+springBoot {
+	mainClass = 'com.example.webprojdemo.WebProjDemoApplication'
+	buildInfo {
+		version = version
+	}
+}
 
 java {
 	toolchain {
