@@ -6,3 +6,12 @@ node {
   version = '20.15.0'
   download = true
 }
+
+tasks.register('ngBuild', NpxTask) {
+  dependsOn npmInstall
+  command = 'ng'
+  args = ['build', '--c=production']
+  inputs.dir('src')
+  inputs.dir(fileTree("node_modules").exclude(".cache"))
+  outputs.dir('dist')
+}
