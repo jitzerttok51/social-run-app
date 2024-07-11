@@ -60,3 +60,11 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.register('ngDeploy', Copy) {
+	dependsOn 'frontend:ngBuild'
+	from('frontend/dist/frontend/browser')
+	into('src/main/resources/static')
+}
+
+tasks.named('processResources').get().dependsOn('ngDeploy')
