@@ -28,17 +28,25 @@
           <mat-label>Confirm password</mat-label>
           <input matInput type="password"/>
         </mat-form-field>
-        <section class="horizontal-stack bottom-space">
-          <span>Specify your gender:</span>
-          <mat-radio-group aria-label="Select an option" class="right-margin">
+        <mat-form-field appearance="outline">
+          <mat-label>Date of birth</mat-label>
+          <input matInput [matDatepicker]="picker">
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <section class="horizontal-stack">
+          <mat-radio-group aria-label="Select an option">
             <mat-radio-button value="1">Male</mat-radio-button>
             <mat-radio-button value="2">Female</mat-radio-button>
           </mat-radio-group>
         </section>
+        <mat-checkbox style="text-align: start;" class="bottom-space">
+          <button mat-button>Accept Terms & Conditions</button>
+        </mat-checkbox>
         <mat-divider class="bottom-space"/>
         <section class="horizontal-stack">
           <button mat-flat-button>Register</button>
-          <mat-checkbox labelPosition="before"><button mat-button>Terms & Conditions</button></mat-checkbox>       
+          <button mat-button color="accent">Help & feedback</button>
         </section>
       </form>
     </mat-card-content>
