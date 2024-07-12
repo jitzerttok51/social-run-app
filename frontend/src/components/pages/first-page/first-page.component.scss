@@ -4,7 +4,3 @@ mat-toolbar {
     background-color: var(--sys-primary-container);
     opacity: 0.6 !important; //so, none can override it
 }
-
-.active {
-    background-color: var(--mat-option-selected-state-layer-color);
-}
