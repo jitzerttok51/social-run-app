@@ -1,6 +1,23 @@
 
-mat-toolbar {
-    font-size: 1em;
-    background-color: var(--sys-primary-container);
-    opacity: 0.6 !important; //so, none can override it
+.form-container {
+    display: flex; 
+    flex-direction: column;
+}
+
+.form-container > * {
+    width: 100%;
+}
+
+.horizontal-stack {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-space {
+    padding-bottom: 1em;
+}
+
+.right-margin {
+    margin-right: 2em;
 }

@@ -5,10 +5,15 @@
 
 @include mat.core();
 html {
+    box-sizing: border-box;
     @include mat.core-theme(stylesm3-theme.$light-theme);
     @include mat.button-theme(stylesm3-theme.$light-theme);
     @include mat.system-level-colors(stylesm3-theme.$light-theme);
     // @include mat.system-level-typography(my-theme.$light-theme);
+}
+
+* {
+    box-sizing: inherit;
 }
 
 html, body { height: 100%; }

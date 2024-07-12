@@ -1,1 +1,46 @@
-<h1>First Page!</h1>
+<main style="margin: 2em">
+
+  <mat-card style="margin: 0 auto; text-align: center; width: 30em">
+    <mat-card-header style="justify-content: center;">
+      <h3>Register</h3>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="form-container">
+        <section class="horizontal-stack">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput/>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput/>
+          </mat-form-field>
+        </section>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="enail"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="password"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm password</mat-label>
+          <input matInput type="password"/>
+        </mat-form-field>
+        <section class="horizontal-stack bottom-space">
+          <span>Specify your gender:</span>
+          <mat-radio-group aria-label="Select an option" class="right-margin">
+            <mat-radio-button value="1">Male</mat-radio-button>
+            <mat-radio-button value="2">Female</mat-radio-button>
+          </mat-radio-group>
+        </section>
+        <mat-divider class="bottom-space"/>
+        <section class="horizontal-stack">
+          <button mat-flat-button>Register</button>
+          <mat-checkbox labelPosition="before"><button mat-button>Terms & Conditions</button></mat-checkbox>       
+        </section>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</main>
