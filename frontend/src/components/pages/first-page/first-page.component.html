@@ -7,39 +7,49 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="form-container">
+      <form class="form-container" [formGroup]="registerForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" formControlName="username"/>
+          <mat-error *ngIf="hasError('username')">{{ errorMsg('username', 'Username')}}</mat-error>
+        </mat-form-field>
         <section class="horizontal-stack">
           <mat-form-field appearance="outline">
             <mat-label>First Name</mat-label>
-            <input matInput/>
+            <input matInput formControlName="firstName"/>
+            <mat-error *ngIf="hasError('firstName')">{{ errorMsg('firstName', 'First name')}}</mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Last Name</mat-label>
-            <input matInput/>
+            <input matInput formControlName="lastName"/>
+            <mat-error *ngIf="hasError('lastName')">{{ errorMsg('lastName', 'Last Name')}}</mat-error>
           </mat-form-field>
         </section>
         <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
-          <input matInput type="enail"/>
+          <input matInput type="email" formControlName="email"/>
+          <mat-error *ngIf="hasError('email')">{{ errorMsg('email', 'Email')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Password</mat-label>
-          <input matInput type="password"/>
+          <input matInput type="password" formControlName="password"/>
+          <mat-error *ngIf="hasError('password')">{{ errorMsg('password', 'Password')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Confirm password</mat-label>
-          <input matInput type="password"/>
+          <input matInput type="password" formControlName="confirmPassword"/>
+          <mat-error *ngIf="hasError('confirmPassword')">{{ errorMsg('confirmPassword', 'Confirm Password')}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Date of birth</mat-label>
-          <input matInput [matDatepicker]="picker">
+          <input matInput [matDatepicker]="picker" formControlName="birthday">
           <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         <section class="horizontal-stack">
-          <mat-radio-group aria-label="Select an option">
-            <mat-radio-button value="1">Male</mat-radio-button>
-            <mat-radio-button value="2">Female</mat-radio-button>
+          <mat-radio-group aria-label="Select an option" formControlName="gender">
+            <mat-radio-button value="M">Male</mat-radio-button>
+            <mat-radio-button value="F">Female</mat-radio-button>
           </mat-radio-group>
         </section>
         <mat-checkbox style="text-align: start;" class="bottom-space">
@@ -47,7 +57,7 @@
         </mat-checkbox>
         <mat-divider class="bottom-space"/>
         <section class="horizontal-stack">
-          <button mat-flat-button>Register</button>
+          <button mat-flat-button (click)="onSubmit()">Register</button>
           <button mat-button color="accent">Help & feedback</button>
         </section>
       </form>
