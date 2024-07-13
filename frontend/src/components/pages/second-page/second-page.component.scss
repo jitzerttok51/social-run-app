@@ -1,0 +1,6 @@
+
+mat-toolbar {
+    font-size: 1em;
+    background-color: var(--sys-primary-container);
+    opacity: 0.6 !important; //so, none can override it
+}

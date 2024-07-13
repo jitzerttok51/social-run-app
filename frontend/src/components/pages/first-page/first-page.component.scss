@@ -1,0 +1,46 @@
+.page-container {
+    margin: 2em; 
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.style-image {
+    width: 50%; 
+    object-fit: cover;
+}
+
+.form-card {
+    margin: 0 auto; 
+    text-align: center; 
+    width: 30em; 
+    margin-left: 0;
+}
+
+.form-card > mat-card-header {
+    justify-content: center;
+}
+
+.form-container {
+    display: flex; 
+    flex-direction: column;
+}
+
+.form-container > * {
+    width: 100%;
+    margin-bottom: 0.2em;
+}
+
+.horizontal-stack {
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bottom-space {
+    padding-bottom: 1em;
+}
+
+.right-margin {
+    margin-right: 2em;
+}
