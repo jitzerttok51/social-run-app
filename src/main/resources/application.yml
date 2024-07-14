@@ -3,3 +3,9 @@ spring.application.name: social-run-app
 management:
   endpoints.web.exposure.include: health,info
   endpoints.jmx.exposure.exclude: "*"
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/social-run
+    username: social-run
+    password: social-run
