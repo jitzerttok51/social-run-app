@@ -3,3 +3,21 @@ spring.application.name: social-run-app
 management:
   endpoints.web.exposure.include: health,info
   endpoints.jmx.exposure.exclude: "*"
+
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASS}
+
+  liquibase:
+    change-log: classpath:db/changelog-master.xml
+    enabled: true
+
+  jpa:
+    hibernate.ddl_auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
