@@ -26,7 +26,7 @@ bootJar {
 }
 
 springBoot {
-	mainClass = 'com.example.webprojdemo.WebProjDemoApplication'
+	mainClass = 'org.jitzerttok51.social.run.SocialRunAppApplicationTests'
 	buildInfo {
 		version = version
 	}
