@@ -13,3 +13,11 @@ spring:
   liquibase:
     change-log: classpath:db/changelog-master.xml
     enabled: true
+
+  jpa:
+    hibernate.ddl_auto: validate
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
