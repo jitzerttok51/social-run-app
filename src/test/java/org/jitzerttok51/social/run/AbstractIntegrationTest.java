@@ -15,6 +15,7 @@ public abstract class AbstractIntegrationTest {
         POSTGRES_SQL_CONTAINER = new PostgreSQLContainer<>("postgres:14")
                 .withDatabaseName("test_db");
         POSTGRES_SQL_CONTAINER.start();
+
     }
 
     @DynamicPropertySource
