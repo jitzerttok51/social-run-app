@@ -3,6 +3,7 @@ package org.jitzerttok51.social.run.exceptions;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+// TODO: Add javadoc
 @Getter
 public class ServerException extends RuntimeException {
 

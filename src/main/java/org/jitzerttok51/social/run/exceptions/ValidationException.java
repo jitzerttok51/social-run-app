@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import java.util.Collection;
 import java.util.Set;
 
+// TODO: Add javadoc
 @Getter
 public class ValidationException extends ServerException {
 

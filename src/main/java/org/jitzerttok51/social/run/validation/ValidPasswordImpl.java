@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.passay.PasswordData;
 import org.passay.PasswordValidator;
 
+// TODO: Add javadoc
 @RequiredArgsConstructor
 public class ValidPasswordImpl implements ConstraintValidator<ValidPassword, String> {
 

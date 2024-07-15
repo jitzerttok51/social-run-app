@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
 import org.jitzerttok51.social.run.service.UserService;
 
+// TODO: Add javadoc
 @RequiredArgsConstructor
 public class UsernameTakenImpl implements ConstraintValidator<UsernameTaken, String> {
 

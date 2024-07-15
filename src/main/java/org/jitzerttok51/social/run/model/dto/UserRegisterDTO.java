@@ -14,6 +14,7 @@ import org.jitzerttok51.social.run.validation.groups.Group3;
 
 import java.time.LocalDate;
 
+// TODO: Add javadoc
 @NoArgsConstructor
 @Data
 @PasswordMatch(message = "{user.registration.confirmPassword.match}", groups = Group3.class)

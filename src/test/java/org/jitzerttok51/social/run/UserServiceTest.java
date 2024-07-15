@@ -17,6 +17,10 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
+// TODO: Add tests for password validation
+// TODO: Add tests for user creation
+// TODO: Add tests for dryRun
 @SpringBootTest
 @ActiveProfiles("test")
 public class UserServiceTest extends AbstractIntegrationTest {

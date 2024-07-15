@@ -3,6 +3,7 @@ package org.jitzerttok51.social.run.model.dto;
 import jakarta.validation.ConstraintViolation;
 import lombok.Getter;
 
+// TODO: Add javadoc
 @Getter
 public class ViolationDTO {
     private final String property;

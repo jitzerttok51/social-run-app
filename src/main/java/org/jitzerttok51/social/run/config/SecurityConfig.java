@@ -26,6 +26,7 @@ import java.util.List;
 @EnableWebSecurity
 public class SecurityConfig {
 
+    // TODO: Add javadoc
     @Bean
     public PasswordValidator passwordValidator(MessageSource messageSource) {
         return new PasswordValidator(new SpringMessageResolver(messageSource), List.of(

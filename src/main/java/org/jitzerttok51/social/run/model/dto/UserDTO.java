@@ -4,6 +4,7 @@ import org.jitzerttok51.social.run.model.Sex;
 
 import java.time.LocalDate;
 
+// TODO: Add javadoc
 public record UserDTO(
         long id,
         String firstName,
