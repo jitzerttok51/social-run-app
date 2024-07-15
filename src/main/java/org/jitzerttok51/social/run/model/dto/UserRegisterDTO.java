@@ -26,7 +26,7 @@ public class UserRegisterDTO {
     private String username;
 
     @NotBlank(message = "{user.registration.email.required}", groups = Group1.class)
-    @Size(min = 3, max = 16, message = "{user.registration.email.invalid}", groups = Group2.class)
+    @Size(min = 3, max = 32, message = "{user.registration.email.invalid}", groups = Group2.class)
     @Email(message = "{user.registration.email.invalid2}", groups = Group3.class)
     @EmailTaken(message = "{user.registration.email.taken}", groups = Group3.class)
     private String email;
