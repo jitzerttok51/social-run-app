@@ -10,6 +10,9 @@ import org.jitzerttok51.social.run.model.Sex;
 import org.jitzerttok51.social.run.validation.EmailTaken;
 import org.jitzerttok51.social.run.validation.IsOverSpecificAge;
 import org.jitzerttok51.social.run.validation.UsernameTaken;
+import org.jitzerttok51.social.run.validation.groups.Group1;
+import org.jitzerttok51.social.run.validation.groups.Group2;
+import org.jitzerttok51.social.run.validation.groups.Group3;
 
 import java.time.LocalDate;
 
@@ -17,28 +20,32 @@ import java.time.LocalDate;
 @Data
 public class UserRegisterDTO {
 
-    @Size(min = 3, max = 16, message = "{user.registration.username.invalid}")
-    @UsernameTaken(message = "{user.registration.username.taken}")
-    private String username = "";
+    @NotBlank(message = "{user.registration.username.required}", groups = Group1.class)
+    @Size(min = 3, max = 16, message = "{user.registration.username.invalid}", groups = Group2.class)
+    @UsernameTaken(message = "{user.registration.username.taken}", groups = Group3.class)
+    private String username;
 
-    @Size(min = 3, max = 16, message = "{user.registration.email.invalid}")
-    @Email(message = "{user.registration.email.invalid2}")
-    @EmailTaken(message = "{user.registration.email.taken}")
-    private String email = "";
+    @NotBlank(message = "{user.registration.email.required}", groups = Group1.class)
+    @Size(min = 3, max = 16, message = "{user.registration.email.invalid}", groups = Group2.class)
+    @Email(message = "{user.registration.email.invalid2}", groups = Group3.class)
+    @EmailTaken(message = "{user.registration.email.taken}", groups = Group3.class)
+    private String email;
 
     private String password;
     private String confirmPassword;
 
-    @Size(min = 2, max = 16, message = "{user.registration.firstName.invalid}")
+    @NotBlank(message = "{user.registration.firstName.required}", groups = Group1.class)
+    @Size(min = 2, max = 16, message = "{user.registration.firstName.invalid}", groups = Group2.class)
     private String firstName = "";
 
-    @Size(min = 2, max = 16, message = "{user.registration.lastName.invalid}")
+    @NotBlank(message = "{user.registration.lastName.required}", groups = Group1.class)
+    @Size(min = 2, max = 16, message = "{user.registration.lastName.invalid}", groups = Group2.class)
     private String lastName = "";
 
-    @NotNull(message = "{user.registration.sex.required}")
+    @NotNull(message = "{user.registration.sex.required}", groups = Group1.class)
     private Sex sex;
 
-    @NotNull(message = "{user.registration.dateOfBirth.required}")
-    @IsOverSpecificAge(minAge = 13, message = "{user.registration.dateOfBirth.invalid}")
+    @NotNull(message = "{user.registration.dateOfBirth.required}", groups = Group1.class)
+    @IsOverSpecificAge(minAge = 13, message = "{user.registration.dateOfBirth.invalid}", groups = Group2.class)
     private LocalDate dateOfBirth;
 }

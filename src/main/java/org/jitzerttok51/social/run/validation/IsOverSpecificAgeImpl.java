@@ -17,6 +17,9 @@ public class IsOverSpecificAgeImpl implements ConstraintValidator<IsOverSpecific
 
     @Override
     public boolean isValid(LocalDate dateOfBirth, ConstraintValidatorContext constraintValidatorContext) {
+        if(dateOfBirth == null) {
+            return false;
+        }
         var diff = Period.between(dateOfBirth, LocalDate.now());
         return diff.getYears() >= minAge;
     }
