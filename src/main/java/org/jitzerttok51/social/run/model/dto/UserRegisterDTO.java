@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jitzerttok51.social.run.model.Sex;
+import org.jitzerttok51.social.run.validation.IsOverSpecificAge;
 
 import java.time.LocalDate;
 
@@ -31,6 +32,7 @@ public class UserRegisterDTO {
     @NotNull(message = "{user.registration.sex.required}")
     private Sex sex;
 
-
+    @NotNull(message = "{user.registration.dateOfBirth.required}")
+    @IsOverSpecificAge(minAge = 13, message = "{user.registration.dateOfBirth.invalid}")
     private LocalDate dateOfBirth;
 }
