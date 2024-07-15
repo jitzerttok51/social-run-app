@@ -6,7 +6,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jitzerttok51.social.run.model.Sex;
+import org.jitzerttok51.social.run.validation.EmailTaken;
 import org.jitzerttok51.social.run.validation.IsOverSpecificAge;
+import org.jitzerttok51.social.run.validation.UsernameTaken;
 
 import java.time.LocalDate;
 
@@ -15,9 +17,11 @@ import java.time.LocalDate;
 public class UserRegisterDTO {
 
     @Size(min = 3, max = 16, message = "{user.registration.username.invalid}")
-    private String username;
+    @UsernameTaken(message = "{user.registration.username.taken}")
+    private String username = "";
 
     @Size(min = 3, max = 16, message = "{user.registration.email.invalid}")
+    @EmailTaken(message = "{user.registration.email.taken}")
     private String email = "";
 
     private String password;
