@@ -1,4 +1,4 @@
-package org.jitzerttok51.social.run.mode.entity;
+package org.jitzerttok51.social.run.model.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
