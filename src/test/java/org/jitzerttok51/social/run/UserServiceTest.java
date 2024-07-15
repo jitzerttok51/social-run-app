@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class UserServiceTest {
+public class UserServiceTest extends AbstractIntegrationTest {
 
     public static final String TOO_SHORT_TEXT = "W";
     public static final String TOO_LONG_TEXT = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW";

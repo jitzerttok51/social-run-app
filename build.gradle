@@ -60,6 +60,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation platform('org.testcontainers:testcontainers-bom:1.19.8') //import bom
+	testImplementation 'org.testcontainers:testcontainers' //no version specified
+	testImplementation 'org.testcontainers:postgresql' //no version specified
 }
 
 tasks.named('test') {
