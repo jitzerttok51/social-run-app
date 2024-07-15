@@ -28,6 +28,7 @@ public class UserServiceTest extends AbstractIntegrationTest {
     public static final LocalDate VALID_DATE_OF_BIRTH = LocalDate.now().minusYears(14);
     public static final LocalDate INVALID_DATE_OF_BIRTH = LocalDate.now().minusYears(10);
     public static final String takenUsername = "myUsername";
+    public static final String VALID_PASSWORD = "myUsername132";
     public static final String takenEmail = "taken_email@abv.bg";
 
     @Autowired
@@ -42,7 +43,9 @@ public class UserServiceTest extends AbstractIntegrationTest {
             "{user.registration.firstName.required}",
             "{user.registration.lastName.required}",
             "{user.registration.sex.required}",
-            "{user.registration.dateOfBirth.required}"
+            "{user.registration.dateOfBirth.required}",
+            "{user.registration.password.required}",
+            "{user.registration.confirmPassword.match}"
     );
 
     private static final Set<String> ALL_FIELDS_SIZE_MESSAGES = Set.of(
@@ -84,6 +87,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(TOO_SHORT_TEXT);
         dto.setLastName(TOO_SHORT_TEXT);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(VALID_DATE_OF_BIRTH);
         assertValidation(ALL_FIELDS_SIZE_MESSAGES, dto);
     }
@@ -96,6 +101,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(TOO_LONG_TEXT);
         dto.setLastName(TOO_LONG_TEXT);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(VALID_DATE_OF_BIRTH);
         assertValidation(ALL_FIELDS_SIZE_MESSAGES, dto);
     }
@@ -108,6 +115,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(NORMAL_TEXT_2);
         dto.setLastName(NORMAL_TEXT_2);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(VALID_DATE_OF_BIRTH);
         assertValidation(USERNAME_AND_EMAIL_SIZE_MESSAGES, dto);
     }
@@ -120,6 +129,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(NORMAL_TEXT_2);
         dto.setLastName(NORMAL_TEXT_2);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(VALID_DATE_OF_BIRTH);
         assertValidation(INVALID_EMAIL_MESSAGES, dto);
     }
@@ -134,6 +145,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(NORMAL_TEXT_2);
         dto.setLastName(NORMAL_TEXT_2);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(VALID_DATE_OF_BIRTH);
         assertValidation(USERNAME_AND_EMAIL_TAKEN_MESSAGES, dto);
     }
@@ -147,6 +160,8 @@ public class UserServiceTest extends AbstractIntegrationTest {
         dto.setFirstName(NORMAL_TEXT_2);
         dto.setLastName(NORMAL_TEXT_2);
         dto.setSex(Sex.MALE);
+        dto.setPassword(VALID_PASSWORD);
+        dto.setConfirmPassword(VALID_PASSWORD);
         dto.setDateOfBirth(INVALID_DATE_OF_BIRTH);
         assertValidation(MIN_AGE_MESSAGES, dto);
     }

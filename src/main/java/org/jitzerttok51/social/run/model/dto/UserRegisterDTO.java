@@ -7,9 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jitzerttok51.social.run.model.Sex;
-import org.jitzerttok51.social.run.validation.EmailTaken;
-import org.jitzerttok51.social.run.validation.IsOverSpecificAge;
-import org.jitzerttok51.social.run.validation.UsernameTaken;
+import org.jitzerttok51.social.run.validation.*;
 import org.jitzerttok51.social.run.validation.groups.Group1;
 import org.jitzerttok51.social.run.validation.groups.Group2;
 import org.jitzerttok51.social.run.validation.groups.Group3;
@@ -18,7 +16,8 @@ import java.time.LocalDate;
 
 @NoArgsConstructor
 @Data
-public class UserRegisterDTO {
+@PasswordMatch(message = "{user.registration.confirmPassword.match}", groups = Group3.class)
+public class UserRegisterDTO implements PasswordsMatch {
 
     @NotBlank(message = "{user.registration.username.required}", groups = Group1.class)
     @Size(min = 3, max = 16, message = "{user.registration.username.invalid}", groups = Group2.class)
@@ -31,7 +30,12 @@ public class UserRegisterDTO {
     @EmailTaken(message = "{user.registration.email.taken}", groups = Group3.class)
     private String email;
 
+    @NotBlank(message = "{user.registration.password.required}", groups = Group1.class)
+    @ValidPassword(groups = Group2.class)
     private String password;
+
+    @NotBlank(message = "{user.registration.password.required}", groups = Group1.class)
+    @ValidPassword(groups = Group2.class)
     private String confirmPassword;
 
     @NotBlank(message = "{user.registration.firstName.required}", groups = Group1.class)
