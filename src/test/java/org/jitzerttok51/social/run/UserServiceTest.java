@@ -168,7 +168,7 @@ public class UserServiceTest extends AbstractIntegrationTest {
 
     private void assertValidation(Set<String> expectedMessages, UserRegisterDTO dto) {
         try {
-            userService.registerUser(dto);
+            userService.registerUser(dto, true);
             Assertions.fail("Did not detect error");
         } catch (ValidationException e) {
             var messages = getMessageTemplates(e);

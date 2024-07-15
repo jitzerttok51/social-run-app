@@ -1,6 +1,7 @@
 package org.jitzerttok51.social.run.service;
 
 import org.jitzerttok51.social.run.exceptions.ValidationException;
+import org.jitzerttok51.social.run.model.dto.UserDTO;
 import org.jitzerttok51.social.run.model.dto.UserRegisterDTO;
 
 public interface UserService {
@@ -9,5 +10,5 @@ public interface UserService {
 
     boolean usernameTaken(String username);
 
-    void registerUser(UserRegisterDTO userRegisterForm) throws ValidationException;
+    UserDTO registerUser(UserRegisterDTO userRegisterForm, boolean dryRun) throws ValidationException;
 }
