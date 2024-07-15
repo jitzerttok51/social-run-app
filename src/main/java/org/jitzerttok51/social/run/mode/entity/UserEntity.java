@@ -21,6 +21,9 @@ public class UserEntity extends BaseEntity {
     @NaturalId
     private String username;
 
+    @Column(unique = true, nullable = false)
+    private String email;
+
     @Column(nullable = false)
     private String hash;
 
