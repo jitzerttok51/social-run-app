@@ -4,6 +4,7 @@ import { catchError, map, Observable, of, take } from 'rxjs';
 
 import { ViolationResponse } from '../../models/ViolationResponse.model'
 import { UserRegister } from '../../models/UserRegister.model';
+import { unchangedTextChangeRange } from 'typescript';
 
 export class FieldErrors {
   username?: string
@@ -22,6 +23,21 @@ export class FieldErrors {
     }
     return false
   }
+}
+
+export interface User {
+  id: number
+  firstName: string,
+  lastName: string
+  username: string
+  email: string
+  sex: string
+  dateOfBirth: Date
+}
+
+export class UserResponse {
+  constructor(readonly user?: User, readonly errorMessage?: string) {}
+  get hasError() { return !this.errorMessage; }
 }
 
 @Injectable({
@@ -51,6 +67,22 @@ export class UserService {
         result.confirmPassword = msg
       }
       return of(result as FieldErrors)
+     }));
+  }
+
+  registerUser(reg: UserRegister): Observable<UserResponse> {
+    return this.http.post<User>("/api/users", reg, {observe: 'response'})
+    .pipe(
+      map(x => {
+        if(!x.body) {
+          return new UserResponse(undefined, `Failed (${x.status}) ${x.statusText}`)
+        }
+        return new UserResponse(x.body, undefined);
+      }),
+      take(1),
+      catchError((err: HttpErrorResponse, ob) => {
+      console.log(`Response from server ${JSON.stringify(err.error)}`)
+      return of(new UserResponse(undefined, err.error as string))
      }));
   }
 }
