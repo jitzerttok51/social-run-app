@@ -32,7 +32,7 @@ export class AppComponent implements AfterViewInit {
     effect(() =>  {
       let msg = this.appError.error()
       if(msg) {
-        snackBar.open(this.appError.error(), 'Dismiss')
+        snackBar.open(this.appError.error(), 'Dismiss')._dismissAfter(10000)
         this.appError.printErrorMessage('')
       }
     }, {allowSignalWrites: true})

@@ -2,7 +2,7 @@ import { Component, effect, input, model, OnInit, ViewChild } from '@angular/cor
 import { CommonModule } from '@angular/common'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
-import { AbstractControl, FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms'
+import { AbstractControl, FormControl, FormGroupDirective, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms'
 import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
@@ -20,10 +20,11 @@ import { ErrorStateMatcher } from '@angular/material/core';
 })
 export class AppInputField {
 
+    required = input(false)
     control: FormControl = new FormControl('')
     displayName = input<string>('Field')
     type = input<string>('text')
-    errorMessage = input<string | undefined>("Test")
+    errorMessage = input<string | undefined>('')
     value = model<string>("")
     errMatcher = this
 
@@ -33,6 +34,7 @@ export class AppInputField {
                 this.control.setErrors({error: true}, {emitEvent: true})
             }
         })
+        effect(() => {if(this.required()) this.control.addValidators(Validators.required)})
     }
 
     setVal(val: any) {

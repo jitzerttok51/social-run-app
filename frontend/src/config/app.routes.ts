@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
 import { RegisterPage } from '../components/pages/register-page/register-page.component';
-import { SecondPage } from '../components/pages/second-page/second-page.component';
+import { LoginPage } from '../components/pages/login-page/login-page.component';
 
 export const routes: Routes = [
     {
         component: RegisterPage,
-        path: 'register-page'
+        path: 'register'
     },
     {
-        component: SecondPage,
-        path: 'second-page'
+        component: LoginPage,
+        path: 'login'
     }
 ];
