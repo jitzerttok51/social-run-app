@@ -59,6 +59,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
 	annotationProcessor (
 			'org.projectlombok:lombok',
 			'org.mapstruct:mapstruct-processor:1.5.5.Final'

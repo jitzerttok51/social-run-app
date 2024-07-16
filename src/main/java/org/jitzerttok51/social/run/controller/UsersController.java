@@ -24,4 +24,9 @@ public class UsersController {
                 .status(dryRun ? HttpStatus.OK : HttpStatus.CREATED)
                 .body(result);
     }
+
+    @GetMapping("/{username}")
+    public ResponseEntity<UserDTO> findUser(@PathVariable String username) {
+        return ResponseEntity.of(userService.findUserByUsername(username));
+    }
 }
