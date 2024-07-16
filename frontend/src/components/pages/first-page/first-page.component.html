@@ -7,57 +7,30 @@
       </mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form class="form-container" [formGroup]="registerForm">
-        <mat-form-field appearance="outline">
-          <mat-label>Username</mat-label>
-          <input matInput type="text" formControlName="username"/>
-          <mat-error *ngIf="hasError('username')">{{ errorMsg('username', 'Username')}}</mat-error>
-        </mat-form-field>
+      <form class="form-container" (submit)="onSubmit(); $event.preventDefault()">
+        <app-input-field displayName="Username" [(value)]="username" [errorMessage]="usernameError()"/>
         <section class="horizontal-stack">
-          <mat-form-field appearance="outline">
-            <mat-label>First Name</mat-label>
-            <input matInput formControlName="firstName"/>
-            <mat-error *ngIf="hasError('firstName')">{{ errorMsg('firstName', 'First name')}}</mat-error>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Last Name</mat-label>
-            <input matInput formControlName="lastName"/>
-            <mat-error *ngIf="hasError('lastName')">{{ errorMsg('lastName', 'Last Name')}}</mat-error>
-          </mat-form-field>
+          <app-input-field displayName="First Name" [(value)]="firstName" [errorMessage]="firstNameError()"/>
+          <app-input-field displayName="Last Name" [(value)]="lastName" [errorMessage]="lastNameError()"/>
         </section>
-        <mat-form-field appearance="outline">
-          <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email"/>
-          <mat-error *ngIf="hasError('email')">{{ errorMsg('email', 'Email')}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password"/>
-          <mat-error *ngIf="hasError('password')">{{ errorMsg('password', 'Password')}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Confirm password</mat-label>
-          <input matInput type="password" formControlName="confirmPassword"/>
-          <mat-error *ngIf="hasError('confirmPassword')">{{ errorMsg('confirmPassword', 'Confirm Password')}}</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Date of birth</mat-label>
-          <input matInput [matDatepicker]="picker" formControlName="birthday">
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+        <app-input-field displayName="Email" [(value)]="email" [errorMessage]="emailError()"/>
+        <app-input-field displayName="Password" type="password" [(value)]="password" [errorMessage]="passwordError()"/>
+        <app-input-field displayName="Confirm Password" type="password" [(value)]="confirmPassword" [errorMessage]="confirmPasswordError()"/>
+        <app-date-picker displayName="Date of birth" [(value)]="birthday" [errorMessage]="birthdayError()"/>
         <section class="horizontal-stack">
-          <mat-radio-group aria-label="Select an option" formControlName="gender">
-            <mat-radio-button value="M">Male</mat-radio-button>
-            <mat-radio-button value="F">Female</mat-radio-button>
-          </mat-radio-group>
+          <app-select-option [radioOptions]="radioOptions" [errorMessage]="genderError()"/>
         </section>
-        <mat-checkbox style="text-align: start;" class="bottom-space">
+        <mat-checkbox style="text-align: start;" class="bottom-space" (change)="termsAndConditions.set($event.checked)">
           <button mat-button>Accept Terms & Conditions</button>
         </mat-checkbox>
         <mat-divider class="bottom-space"/>
         <section class="horizontal-stack">
-          <button mat-flat-button (click)="onSubmit()">Register</button>
+          <button 
+          mat-flat-button type="button" 
+          (click)="onSubmit(); $event.stopPropagation();"
+          [disabled]="errors() || !termsAndConditions() || isLoading()" [class.spinner]="isLoading()" >
+          @if (!isLoading()) {Register}
+        </button>
           <button mat-button color="accent">Help & feedback</button>
         </section>
       </form>

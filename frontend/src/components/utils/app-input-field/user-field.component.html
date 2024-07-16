@@ -1,0 +1,5 @@
+<mat-form-field appearance="outline" style="width: 100%;">
+  <mat-label>{{ displayName() }}</mat-label>
+  <input matInput [type]="type()" [formControl]="control" (input)="setVal($event)"/>
+  <mat-error>{{errorMessage()}}</mat-error>
+</mat-form-field>

@@ -1,0 +1,5 @@
+<mat-radio-group aria-label="Select an option">
+    @for (item of radioOptions(); track $index) {
+        <mat-radio-button [value]="item.value">{{ item.displayName }}</mat-radio-button>
+    }
+</mat-radio-group>
