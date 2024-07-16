@@ -1,0 +1,26 @@
+<main class="page-container">
+    <mat-card class="form-card">
+      <mat-card-header>
+        <mat-card-title>
+          <h3>Login</h3>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <form class="form-container" (submit)="onSubmit(); $event.preventDefault()">
+          <app-input-field displayName="Username" [(value)]="username" [required]="true"/>
+          <app-input-field displayName="First Name" [(value)]="password" type="password" [required]="true"/>
+          <mat-divider class="bottom-space"/>
+          <section class="horizontal-stack">
+            <button mat-flat-button 
+            type="button" 
+            (click)="onSubmit(); $event.stopPropagation();"
+            [disabled]="!isReady() || isLoading()"
+            [class.spinner]="isLoading()">
+                @if (!isLoading()) {Login}
+            </button>
+            <button mat-button color="accent">Help & feedback</button>
+          </section>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </main>
