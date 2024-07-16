@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { FirstPage } from '../components/pages/first-page/first-page.component';
+import { RegisterPage } from '../components/pages/register-page/register-page.component';
 import { SecondPage } from '../components/pages/second-page/second-page.component';
 
 export const routes: Routes = [
     {
-        component: FirstPage,
-        path: 'first-page'
+        component: RegisterPage,
+        path: 'register-page'
     },
     {
         component: SecondPage,

@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline" style="width: 100%;">
+  <mat-label>{{ displayName() }}</mat-label>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="value" (input)="log($event.returnValue)">
+  <mat-error *ngIf="errorMessage">{{errorMessage()}}</mat-error>
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
