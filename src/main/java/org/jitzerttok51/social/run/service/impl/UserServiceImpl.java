@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jitzerttok51.social.run.model.dto.UserDTO;
 import org.jitzerttok51.social.run.model.dto.UserRegisterDTO;
-import org.jitzerttok51.social.run.model.dto.UserSecretDTO;
 import org.jitzerttok51.social.run.model.mapping.UserEntityMapper;
 import org.jitzerttok51.social.run.repository.UserRepository;
 import org.jitzerttok51.social.run.service.UserService;
