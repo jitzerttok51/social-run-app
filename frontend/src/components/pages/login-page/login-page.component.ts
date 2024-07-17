@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { AppInputField } from "../../utils/app-input-field/user-field.component";
@@ -8,8 +8,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppErrorService } from '../../../services/app-error/app-error-service.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { LoginRequest, LoginService } from '../../../services/login-service/login-service.service';
+import { LoginService } from '../../../services/login-service/login-service.service';
 import { UserService } from '../../../services/user-service/user-service.service';
+import { LoginRequest } from '../../../models/LoginRequest.model';
 @Component({
   selector: 'login-page',
   standalone: true,

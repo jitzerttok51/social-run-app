@@ -4,19 +4,8 @@ import { Router } from "@angular/router";
 import { catchError, map, Observable, of, take } from "rxjs";
 import { Status } from "../../models/Status.model";
 import { jwtDecode } from 'jwt-decode'
-
-export class LoginRequest {
-    constructor(readonly username: string, readonly password: string){}
-}
-
-interface AuthToken {
-    exp: number
-    firstName: string
-    lastName: string
-    username: string
-    iat: number
-    iss: string
-}
+import { AuthToken } from "../../models/AuthToken.component";
+import { LoginRequest } from "../../models/LoginRequest.model";
 
 interface LoginResponse {
     accessToken: string
