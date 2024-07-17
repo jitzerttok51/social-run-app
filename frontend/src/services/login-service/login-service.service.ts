@@ -13,6 +13,8 @@ interface LoginResponse {
     type: string
 }
 
+const AUTH_RESPONSE_KEY = 'authResponse'
+
 @Injectable({
     providedIn: 'root'
 })
@@ -25,7 +27,7 @@ export class LoginService {
     private tokenInfo = signal<AuthToken | undefined>(undefined)
 
     constructor() {
-        let raw = localStorage.getItem('authResponse')
+        let raw = localStorage.getItem(AUTH_RESPONSE_KEY)
         if(raw != null) {
             this.processResponse(JSON.parse(raw))
         }
@@ -34,13 +36,20 @@ export class LoginService {
     get userInfo() {
         let userInfo = this.tokenInfo();
         if(!userInfo) {
-            this.router.navigateByUrl('/login')
+            this.logout()
             return undefined as unknown as AuthToken
         }
         return userInfo
     }
 
     isLoggedIn = computed(() => !!this.response())
+
+    logout() {
+        this.response.set(undefined)
+        this.tokenInfo.set(undefined)
+        localStorage.removeItem(AUTH_RESPONSE_KEY)
+        this.router.navigateByUrl('/login')
+    }
 
     login(request: LoginRequest): Observable<Status<undefined>> {
         return this.http
@@ -53,10 +62,9 @@ export class LoginService {
     }
 
     private processResponse(response: LoginResponse): Status<undefined> {
-        console.log(response)
         this.response.set(response);
         this.tokenInfo.set(jwtDecode(response.accessToken))
-        localStorage.setItem('authResponse', JSON.stringify(response))
+        localStorage.setItem(AUTH_RESPONSE_KEY, JSON.stringify(response))
         return new Status(true, '', undefined)
     }
 
@@ -67,7 +75,6 @@ export class LoginService {
 
     static authInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> {
         const loginService = inject(LoginService)
-        const router = inject(Router)
 
         const authToken = loginService.response();
         if(authToken) {
@@ -79,7 +86,7 @@ export class LoginService {
             .pipe(catchError((error: HttpErrorResponse, obs) => {
                 if(Math.floor(error.status / 100) === 4) {
                     console.log(error)
-                    router.navigateByUrl('/login')
+                    loginService.logout()
                 }
                 return obs
             }));

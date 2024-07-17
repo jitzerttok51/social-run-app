@@ -39,4 +39,7 @@ export class AppComponent implements AfterViewInit {
     }, {allowSignalWrites: true})
   }
   
+  logout() {
+    this.loginService.logout()
+  }
 }
