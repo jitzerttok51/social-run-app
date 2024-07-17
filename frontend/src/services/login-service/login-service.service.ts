@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
-import { catchError, map, Observable, of, take } from "rxjs";
+import { catchError, map, Observable, of, take, throwError } from "rxjs";
 import { Status } from "../../models/Status.model";
 import { jwtDecode } from 'jwt-decode'
 import { AuthToken } from "../../models/AuthToken.component";
@@ -85,10 +85,11 @@ export class LoginService {
         return next(req)
             .pipe(catchError((error: HttpErrorResponse, obs) => {
                 if(Math.floor(error.status / 100) === 4) {
-                    console.log(error)
-                    loginService.logout()
+                    if(error.status === 401) {
+                        loginService.logout()
+                    }
                 }
-                return obs
+                throw error
             }));
     }
 }

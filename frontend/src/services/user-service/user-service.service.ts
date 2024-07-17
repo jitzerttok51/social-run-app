@@ -100,7 +100,9 @@ export class UserService {
       take(1),
       catchError((err: HttpErrorResponse, _) => {
       console.log(`Response from server ${JSON.stringify(err.error)}`)
-      return of(new Status(false, err.error, null as unknown) as unknown as Status<User>)
+      const status = new Status(false, err.error, null as unknown) as unknown as Status<User>
+      status.errResponse = err
+      return of(status)
      }));
   }
 

@@ -54,10 +54,9 @@ export class LoginPage {
           this.appError.printErrorMessage(status.message)
           return
         }
-        // this.userService.getUser(this.loginService.userInfo.username).subscribe(status=> console.log(status))
         this.username.set('')
         this.password.set('')
-        setTimeout(() => this.router.navigateByUrl('/'), 1000);
+        setTimeout(() => this.router.navigateByUrl(`/users/${this.loginService.userInfo.username}`), 1000);
       })
     }, 3000)
   }
