@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse, HttpEvent, HttpHandlerFn, HttpRequest } from "@angular/common/http";
-import { inject, Injectable, signal } from "@angular/core";
+import { computed, inject, Injectable, signal } from "@angular/core";
 import { Router } from "@angular/router";
 import { catchError, map, Observable, of, take } from "rxjs";
 import { Status } from "../../models/Status.model";
@@ -32,6 +32,8 @@ export class LoginService {
         }
         return userInfo
     }
+
+    isLoggedIn = computed(() => !!this.response())
 
     login(request: LoginRequest): Observable<Status<undefined>> {
         return this.http

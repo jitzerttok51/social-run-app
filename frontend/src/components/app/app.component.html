@@ -4,6 +4,9 @@
     <a mat-button href="/" active color="primary" #test>Login</a>
     <a mat-button color="primary" routerLink="/register" routerLinkActive="mat-accent" class="mat-accent" >Register</a>
     <a mat-button color="primary" routerLink="/login" routerLinkActive="mat-accent" >Second Page</a>
+    @if (loginService.isLoggedIn()) {
+      <a mat-button color="primary" routerLink="/login" routerLinkActive="mat-accent" >{{ loginService.userInfo.username }}</a>
+    }
   </section>
 </mat-toolbar>
 
