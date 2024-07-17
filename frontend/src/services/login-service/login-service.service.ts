@@ -24,6 +24,13 @@ export class LoginService {
 
     private tokenInfo = signal<AuthToken | undefined>(undefined)
 
+    constructor() {
+        let raw = localStorage.getItem('authResponse')
+        if(raw != null) {
+            this.processResponse(JSON.parse(raw))
+        }
+    }
+
     get userInfo() {
         let userInfo = this.tokenInfo();
         if(!userInfo) {
@@ -49,6 +56,7 @@ export class LoginService {
         console.log(response)
         this.response.set(response);
         this.tokenInfo.set(jwtDecode(response.accessToken))
+        localStorage.setItem('authResponse', JSON.stringify(response))
         return new Status(true, '', undefined)
     }
 
