@@ -17,7 +17,6 @@ export class AppComponent implements AfterViewInit {
   appError = inject(AppErrorService)
 
   ngAfterViewInit(): void {
-    console.log(this.link)
     this.link.focus()
   }
 
