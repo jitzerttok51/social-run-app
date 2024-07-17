@@ -1,9 +1,15 @@
 <mat-toolbar>
   <h2>Social Run</h2>
   <section style="margin-left: auto;">
-    <a mat-button href="/" active color="primary" #test>Login</a>
-    <a mat-button color="primary" routerLink="/register" routerLinkActive="mat-accent" class="mat-accent" >Register</a>
-    <a mat-button color="primary" routerLink="/login" routerLinkActive="mat-accent" >Second Page</a>
+    <a mat-button href="/" active color="primary" #test>Home</a>
+    @if(!loginService.isLoggedIn()) {
+      <a mat-button color="primary" routerLink="/register" routerLinkActive="mat-accent" class="mat-accent" >Register</a>
+      <a mat-button color="primary" routerLink="/login" routerLinkActive="mat-accent" >Login</a>
+    }
+    @if (loginService.isLoggedIn()) {
+      <a mat-button color="primary" routerLink="/" routerLinkActive="mat-accent" >{{ loginService.userInfo.username }}</a>
+      <a mat-button color="primary" (click)="logout()" >Logout</a>
+    }
   </section>
 </mat-toolbar>
 

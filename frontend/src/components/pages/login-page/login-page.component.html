@@ -8,7 +8,7 @@
       <mat-card-content>
         <form class="form-container" (submit)="onSubmit(); $event.preventDefault()">
           <app-input-field displayName="Username" [(value)]="username" [required]="true"/>
-          <app-input-field displayName="First Name" [(value)]="password" type="password" [required]="true"/>
+          <app-input-field displayName="Password" [(value)]="password" type="password" [required]="true"/>
           <mat-divider class="bottom-space"/>
           <section class="horizontal-stack">
             <button mat-flat-button 

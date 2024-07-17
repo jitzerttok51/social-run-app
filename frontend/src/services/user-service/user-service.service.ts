@@ -5,6 +5,7 @@ import { catchError, map, Observable, of, take } from 'rxjs';
 import { ViolationResponse } from '../../models/ViolationResponse.model'
 import { UserRegister } from '../../models/UserRegister.model';
 import { unchangedTextChangeRange } from 'typescript';
+import { Status } from '../../models/Status.model';
 
 export class FieldErrors {
   username?: string
@@ -85,4 +86,22 @@ export class UserService {
       return of(new UserResponse(undefined, err.error as string))
      }));
   }
+
+  
+  getUser(username: string): Observable<Status<User>> {
+    return this.http.get<User>(`/api/users/${username}`, {observe: 'response'})
+    .pipe(
+      map(x => {
+        if(!x.body) {
+          return new Status(false, `Failed to load body (${x.status}) ${x.statusText}`, null) as unknown as Status<User>
+        }
+        return new Status(true, '', x.body)
+      }),
+      take(1),
+      catchError((err: HttpErrorResponse, _) => {
+      console.log(`Response from server ${JSON.stringify(err.error)}`)
+      return of(new Status(false, err.error, null as unknown) as unknown as Status<User>)
+     }));
+  }
+
 }

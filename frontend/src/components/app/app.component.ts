@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button'
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AppErrorService } from '../../services/app-error/app-error-service.service';
+import { LoginService } from '../../services/login-service/login-service.service';
 
 @Component({
   selector: 'app-root',
@@ -15,9 +16,9 @@ import { AppErrorService } from '../../services/app-error/app-error-service.serv
 export class AppComponent implements AfterViewInit {
 
   appError = inject(AppErrorService)
+  loginService = inject(LoginService)
 
   ngAfterViewInit(): void {
-    console.log(this.link)
     this.link.focus()
   }
 
@@ -38,4 +39,7 @@ export class AppComponent implements AfterViewInit {
     }, {allowSignalWrites: true})
   }
   
+  logout() {
+    this.loginService.logout()
+  }
 }
