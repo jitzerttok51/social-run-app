@@ -26,7 +26,7 @@ public class UsersController {
     }
 
     @GetMapping("/{username}")
-    public ResponseEntity<UserDTO> findUser(@PathVariable String username) {
-        return ResponseEntity.of(userService.findUserByUsername(username));
+    public ResponseEntity<?> findUser(@PathVariable String username) {
+        return ResponseEntity.noContent().build();
     }
 }
