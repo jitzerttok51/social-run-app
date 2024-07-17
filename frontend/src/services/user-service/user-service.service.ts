@@ -93,7 +93,7 @@ export class UserService {
     .pipe(
       map(x => {
         if(!x.body) {
-          return new Status(false, `Failed to load body (${x.status}) ${x.statusText}`, null) as unknown as Status<User>
+          throw new Error(`Failed to load body (${x.status}) ${x.statusText}`)
         }
         return new Status(true, '', x.body)
       }),
